@@ -11,17 +11,20 @@ use Illuminate\Support\Facades\DB;
 
 class MitumoriController extends Controller
 {
-    public function kingaku_add(Request $request){
+    public function kingaku_add(Request $request)
+    {
         $cards = Card::all();
         return view('mitumori/kingaku_add', ['cards'=>$cards]);
     }
 
-    public function biko_add(Request $request){
+    public function biko_add(Request $request)
+    {
         $count = 10;
         return view('mitumori/biko_add', ['count'=>$count]);
     }
 
-    public function hosoku_add(Request $request){
+    public function hosoku_add(Request $request)
+    {
         return view('mitumori/hosoku_add');
     }
 
@@ -43,11 +46,13 @@ class MitumoriController extends Controller
 
         $total_price = $kingaku;
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 10; $i++)
+        {
             $all_total_price += (int)$total_price[$i];
         }
 
-        for ($i = 1; $i <= 7; $i++) {
+        for ($i = 1; $i <= 7; $i++)
+        {
             $hosoku[] = $_POST['hosoku'.$i];
         }
 
@@ -61,14 +66,18 @@ class MitumoriController extends Controller
         return view('mitumori/mitumori_check', $param);
     }
 
-    public function mitumori_check_confirm(Request $request){
+    public function mitumori_check_confirm(Request $request)
+    {
         
         session_start();
         #unset($_SESSION['count']);
-        if (!isset($_SESSION['count'])) {
+        if (!isset($_SESSION['count']))
+        {
             $_SESSION['count'] = 1;
             $count = $_SESSION['count'];
-        } else {
+        }
+        else
+        {
             $_SESSION['count']++;
             $count = $_SESSION['count'];
         }
