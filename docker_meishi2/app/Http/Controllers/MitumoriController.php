@@ -56,7 +56,7 @@ class MitumoriController extends Controller
             $hosoku[] = $_POST['hosoku'.$i];
         }
 
-        
+
         $param = [
             'form_mitumori'=>$form_mitumori, 'form_hosoku'=>$form_hosoku,
             'total_price'=>$total_price, 'all_total_price'=>$all_total_price, 'tekiyo'=>$tekiyo,
@@ -68,7 +68,7 @@ class MitumoriController extends Controller
 
     public function mitumori_check_confirm(Request $request)
     {
-        
+
         session_start();
         #unset($_SESSION['count']);
         if (!isset($_SESSION['count']))
@@ -163,7 +163,7 @@ class MitumoriController extends Controller
         $fax = $my_corp['fax'];
         preg_match("/(.{3})(.{3})(.{4})/", $fax, $match);
         $fax_new = "FAX " . $match[1] . "-" . $match[2] . "-" . $match[3];
-        
+
 
         for($i=1; $i<=10; $i++){
             $tekiyo[] = $mitumori['tekiyo'.$i];
@@ -253,7 +253,7 @@ class MitumoriController extends Controller
     public function edit_check_confirm(Request $request){
         session_start();
         #unset($_SESSION['count']);
-        if (!isset($_SESSION['count'])) {
+        if (!isset(session['count'])) {
             $_SESSION['count'] = 1;
             $count = $_SESSION['count'];
         } else {
@@ -335,7 +335,7 @@ class MitumoriController extends Controller
         $fax = $my_corp['fax'];
         preg_match("/(.{3})(.{3})(.{4})/", $fax, $match);
         $fax_new = "FAX " . $match[1] . "-" . $match[2] . "-" . $match[3];
-        
+
 
         for($i=1; $i<=10; $i++){
             $tekiyo[] = $mitumori['tekiyo'.$i];
@@ -377,7 +377,7 @@ class MitumoriController extends Controller
         $fax = $my_corp['fax'];
         preg_match("/(.{3})(.{3})(.{4})/", $fax, $match);
         $fax_new = "FAX " . $match[1] . "-" . $match[2] . "-" . $match[3];
-    
+
 
         for($i=1; $i<=10; $i++){
             $tekiyo[] = $mitumori['tekiyo'.$i];
@@ -408,5 +408,5 @@ class MitumoriController extends Controller
         Mitumori::find($request->id)->delete();
         return redirect('/mitumori/mitumori_list');
     }
-    
+
 }
