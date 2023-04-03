@@ -20,6 +20,7 @@ class MitumoriController extends Controller
     public function biko_add(Request $request)
     {
         $count = 10;
+
         return view('mitumori/biko_add', ['count'=>$count]);
     }
 
@@ -187,6 +188,17 @@ class MitumoriController extends Controller
             'total_price' => $total_price,
         ];
         return view('/mitumori/mitumori_show', $param);
+    }
+
+    public function show_branch(Request $request) {
+        $id = $request->id;
+        if ($request->has('edit')) {
+            return redirect()->route('edit.kingaku', ['id' => $id]);
+        }
+
+        if ($request->has('delete')) {
+            return redirect()->route('edit.delete', ['id' => $id]);
+        }
     }
 
     public function edit_kingaku(Request $request){
